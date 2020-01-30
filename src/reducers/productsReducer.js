@@ -17,7 +17,19 @@ ADD TO WISHLIST
 REMOVE FROM WISHLIST
 */
 
-export const productsReducer = (state, action) => {
+const productsReducerDefaultState = {
+    products: [{
+        id: '',
+        name: '',
+        price: undefined,
+        discount: 0,
+        manufacturer: '',
+        addedDate: undefined,
+        description: ''
+    }]
+}
+
+export const productsReducer = (state = productsReducerDefaultState, action) => {
     switch (action.type) {
         case 'POPULATE_PRODUCTS':
             return action.products;
@@ -57,23 +69,3 @@ export const productsReducer = (state, action) => {
             return state;
     }
 }
-
-/*
-const demoState = {
-    products: [{
-        id: '',
-        name: '',
-        manufacturer: '',
-        description: '',
-        price: undefined,
-        discount: 0, 
-        addedDate: undefined,
-    }],
-    filters: {
-        searchText: '',
-        filterBy: '', //price,discount,manufacturer,dateAdded,popular
-        priceRangeLowerLimit: undefined,
-        priceRangeHigherLimit: undefined
-    }
-}
-*/

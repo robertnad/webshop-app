@@ -10,14 +10,23 @@ FILTER BY PRICE RANGE
 FILTER BY DISCOUNT
 FILTER BY DATE ADDED
 FILTER BY MANUFACTURER
-FILTER BY POPULAR
+FILTER BY POPULARITY
 ADD TO CART
 REMOVE FROM CART
 ADD TO WISHLIST
 REMOVE FROM WISHLIST
 */
 
-export const filtersReducer = (state, action) => {
+const filtersReducerDefaultState = {
+    filters: {
+        searchText: '',
+        filterBy: '', //price,discount,manufacturer,dateAdded,popular
+        priceRangeLowerLimit: undefined,
+        priceRangeHigherLimit: undefined
+    }
+}
+
+export const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
         case 'SEARCH_PRODUCT':
             return {
@@ -43,23 +52,3 @@ export const filtersReducer = (state, action) => {
             return state;
     }
 }
-
-/*
-const demoState = {
-    products: [{
-        id: '',
-        name: '',
-        manufacturer: '',
-        description: '',
-        price: undefined,
-        discount: 0, 
-        addedDate: undefined,
-    }],
-    filters: {
-        searchText: '',
-        filterBy: '', //price,discount,manufacturer,dateAdded,popular
-        priceRangeLowerLimit: undefined,
-        priceRangeHigherLimit: undefined
-    }
-}
-*/

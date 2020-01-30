@@ -9,7 +9,7 @@ const { TextArea } = Input;
 
 const ProductAddForm = () => {
 
-    const { dispatch } = useContext(ProductsContext);
+    const { dispatchProducts } = useContext(ProductsContext);
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState();
@@ -17,8 +17,8 @@ const ProductAddForm = () => {
     const [discount, setDiscount] = useState(0);
     const [manufacturer, setManufacturer] = useState('');
 
-    const [id, setId] = useState();
-    const [dateAdded, setDateAdded] = useState();
+    const [/*id*/, setId] = useState();
+    const [/*dateAdded*/, setDateAdded] = useState();
 
     const [showModal, setShowModal] = useState(false);
     
@@ -28,20 +28,21 @@ const ProductAddForm = () => {
 
     const addProduct = (e) => {
         e.preventDefault();
+
         let prodId = uuid();
-        // let prodDate = moment().format('DD.MM.YYYY.')
-        dispatch({
+        let prodDate = moment().format('DD.MM.YYYY.')
+
+        dispatchProducts({
             type: 'ADD_PRODUCT',
             id: prodId,
             name,
-            price, //.match(/^\d{1,}(\.\d{0,2})?$/)
+            price,
             discount,
             manufacturer,
             description,
-            dateAdded: moment().format('DD.MM.YYYY.')
+            dateAdded: prodDate
         });
-        console.log(id);
-        // HANDLE ID DISPATCHING
+        console.log(prodId + '\n' + prodDate);
 
         setName('');
         setPrice();
@@ -85,7 +86,12 @@ const ProductAddForm = () => {
                         style={{ paddingTop: '10px' }}
                         placeholder="price"
                         allowClear
-                        onChange={(e) => setPrice(e.target.value)} />
+                        onChange={(e) => {
+                            const price = e.target.value;
+                            if (price.match(/^\d{1,}(\.\d{0,2})?$/)) {
+                                setPrice(price)
+                            }
+                        }} />
                     <Input
                         value={discount}
                         style={{ paddingTop: '10px' }}

@@ -1,16 +1,12 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import SearchProduct from './SearchProduct';
 import FilterBy from './FilterBy';
 import PriceRangeSelector from './PriceRangeSelector';
 import CurrencySelection from '../CurrencySelection';
-import { filtersReducer } from '../../reducers/filtersReducer';
-import FiltersContext from '../../context/filters-context';
 import { Collapse, Row, Col } from 'antd';
 const { Panel } = Collapse;
 
 const FilterComponent = () => {
-
-    const [filters, dispatchFilters] = useReducer(filtersReducer, []);
 
     /* DONT NEED THIS CAUSE THERES ONLY ONE KEY (ONE HEADER) ? */
     // const callback = (key) => {
@@ -19,7 +15,7 @@ const FilterComponent = () => {
 
     
     return (
-        <FiltersContext.Provider value={{ filters, dispatchFilters }}>
+        <div>
             <Row type="flex" justify="space-between" align="middle">
                 <Col xs={{ span: 2, offset: 0 }} lg={{span: 2, offset: 0 }} style={{padding: '10px'}}>
                     <SearchProduct />
@@ -34,8 +30,7 @@ const FilterComponent = () => {
                     <CurrencySelection />
                 </Col>
             </Row>
-
-        </FiltersContext.Provider>
+        </div>
     );
 };
 

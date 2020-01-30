@@ -6,13 +6,14 @@ const { confirm } = Modal;
 
 const ProductDeleteForm = ({product}) => {
 
-    const { dispatch } = useContext(ProductsContext);
+    const { dispatchProducts } = useContext(ProductsContext);
 
     const confirmDelete = () => {
         confirm({
             title: 'Do you want to delete this item?',
             onOk() {
-                dispatch({ type:'REMOVE_PRODUCT', id: product.id });
+                dispatchProducts({ type:'REMOVE_PRODUCT', id: product.id });
+                console.log(`${product.name} deleted!`)
             },
             onCancel() {}
         });

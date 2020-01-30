@@ -14,7 +14,7 @@ const Product = ({ product }) => {
       <Descriptions.Item label="Date added">{product.dateAdded}</Descriptions.Item>
       <Descriptions.Item label="Description">{product.description}</Descriptions.Item>
       <Descriptions.Item label="Id">{product.id}</Descriptions.Item>
-      <Descriptions.Item label="Rate"><Rate allowHalf defaultValue={5} /></Descriptions.Item>
+      <Descriptions.Item label="Rate"><Rate allowHalf defaultValue={0} /></Descriptions.Item>
     </Descriptions>
   );
   
@@ -78,10 +78,10 @@ export default Product;
 // description={product.description}
 
 
-            // <h3>{product.name}</h3>
-            // <p>{product.price}</p>
-            // <p>{product.description}</p>
-            // <Button onClick={confirmDelete}>Remove</Button>
+        // <h3>{product.name}</h3>
+        // <p>{product.price}</p>
+        // <p>{product.description}</p>
+        // <Button onClick={confirmDelete}>Remove</Button>
 
 
 /* <button onClick={() => dispatch({ type:'REMOVE_PRODUCT', name: product.name })}>Remove</button> */

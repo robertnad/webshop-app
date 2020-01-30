@@ -6,7 +6,7 @@ const { TextArea } = Input;
 
 const ProductEditForm = ({product}) => {
 
-    const { dispatch } = useContext(ProductsContext);
+    const { dispatchProducts } = useContext(ProductsContext);
 
     const [name, setName] = useState(product.name);
     const [price, setPrice] = useState(product.price);
@@ -26,11 +26,11 @@ const ProductEditForm = ({product}) => {
 
     const editProduct = (e) => {
         e.preventDefault();
-        dispatch({
+        dispatchProducts({
             type: 'EDIT_PRODUCT',
             id: product.id,
             name,
-            price, //.match(/^\d{1,}(\.\d{0,2})?$/)
+            price,
             discount,
             manufacturer,
             description
@@ -69,7 +69,12 @@ const ProductEditForm = ({product}) => {
                     value={price}
                     style={{ paddingTop: '10px' }}
                     placeholder="Price"
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => {
+                        const price = e.target.value;
+                        if (price.match(/^\d{1,}(\.\d{0,2})?$/)) {
+                            setPrice(price)
+                        }
+                    }}
                     allowClear
                 />
                 <Input

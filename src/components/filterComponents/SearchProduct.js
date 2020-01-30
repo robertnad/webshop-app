@@ -11,14 +11,14 @@ const SearchProduct = () => {
     const [searchText, setSearchText] = useState('');
 
     const searchProduct = (e) => {
-        e.preventDefault();
-        // setSearchText(searchText);
+        // e.preventDefault();
+        const text = setSearchText(e.target.value);
         dispatchFilters({
             type: 'SEARCH_PRODUCT',
-            searchText
+            searchText: text
         });
-        console.log(searchText);
-        setSearchText(searchText);
+        console.log(text);
+        // setSearchText(searchText);
     }
 
     return (
@@ -28,7 +28,7 @@ const SearchProduct = () => {
                 type="text"
                 value={searchText}
                 placeholder="Search products"
-                onChange={(e) => setSearchText(e.target.value)}
+                // onChange={searchProduct}
                 onSearch={searchProduct}
             />
         </div>
@@ -36,3 +36,4 @@ const SearchProduct = () => {
 }
 
 export default SearchProduct;
+
