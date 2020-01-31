@@ -1,24 +1,26 @@
-import React, { useReducer, useState } from 'react';
-import { filtersReducer } from '../../reducers/filtersReducer';
+import React, { useContext, useState } from 'react';
+import ProductsContext from '../../context/products-context';
 import { Input } from 'antd';
 
 const { Search } = Input;
 
 const SearchProduct = () => {
-
-    const { dispatchFilters } = useReducer(filtersReducer, []);
+    
+    const { dispatchFilters } = useContext(ProductsContext);
 
     const [searchText, setSearchText] = useState('');
 
     const searchProduct = (e) => {
         // e.preventDefault();
-        const text = setSearchText(e.target.value);
+
+        // let text = setSearchText(e.target.value);
         dispatchFilters({
             type: 'SEARCH_PRODUCT',
-            searchText: text
+            searchText
         });
-        console.log(text);
-        // setSearchText(searchText);
+        
+        console.log(searchText);
+        // setSearchText('');
     }
 
     return (
@@ -28,8 +30,8 @@ const SearchProduct = () => {
                 type="text"
                 value={searchText}
                 placeholder="Search products"
-                // onChange={searchProduct}
                 onSearch={searchProduct}
+                onChange={(e) => setSearchText(e.target.value)}
             />
         </div>
     );

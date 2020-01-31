@@ -5,7 +5,8 @@ import { Radio } from 'antd';
 const FilterBy = () => {
 
     // const [filters, dispatchFilters] = useReducer(filtersReducer, []);
-
+    // CONTEXT ^
+    
     const [value, setValue] = useState();
 
     const onChange = (e) => {

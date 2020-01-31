@@ -42,6 +42,7 @@ const ProductAddForm = () => {
             description,
             dateAdded: prodDate
         });
+
         console.log(prodId + '\n' + prodDate);
 
         setName('');
@@ -96,7 +97,6 @@ const ProductAddForm = () => {
                         value={discount}
                         style={{ paddingTop: '10px' }}
                         placeholder="add discount"
-                        allowClear
                         onChange={(e) => setDiscount(e.target.value)} />
                     <Input
                         value={manufacturer}
