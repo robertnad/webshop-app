@@ -33,7 +33,15 @@ const Product = ({ product }) => {
           marginRight: 32,
         }}
       />
-      <Statistic title="Price" prefix="$" value={product.price} />
+      <Statistic 
+        title="Price"
+        prefix="$"
+        value={product.price}
+        style={{
+          marginRight: 32,
+        }} 
+      />
+      <Statistic title="Discount" suffix="%" value={product.discount} />
     </div>
   );
   

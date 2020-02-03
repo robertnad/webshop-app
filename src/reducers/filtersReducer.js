@@ -33,10 +33,25 @@ export const filtersReducer = (state = filtersReducerDefaultState, action) => {
                 ...state,
                 searchText: action.searchText
             };
-        case 'FILTER_BY_PRICE':
+        case 'FILTER_BY_PRICE_ASCENDING':
             return {
                 ...state,
-                filterBy: 'price'
+                filterBy: 'priceAscending'
+            };
+        case 'FILTER_BY_PRICE_DESCENDING':
+            return {
+                ...state,
+                filterBy: 'priceDescending'
+            };
+        case 'FILTER_BY_DATE':
+            return {
+                ...state,
+                filterBy: 'dateAdded'
+            };
+        case 'FILTER_BY_DISCOUNT':
+            return {
+                ...state,
+                filterBy: 'discount'
             };
         case 'FILTER_BY_PRICE_RANGE_LOW':
             return {

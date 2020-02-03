@@ -10,9 +10,8 @@ const SearchProduct = () => {
 
     const [searchText, setSearchText] = useState('');
 
-    const searchProduct = (e) => {
+    const searchProduct = () => {
         // e.preventDefault();
-
         // let text = setSearchText(e.target.value);
         dispatchFilters({
             type: 'SEARCH_PRODUCT',
