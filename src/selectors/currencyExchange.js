@@ -1,34 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Select } from 'antd';
-const { Option } = Select;
-
-// const CurrencySelection = () => {
-
-//     const handleChange = (value) => {
-//         console.log(`${value}`);
-//     }
-
-//     return (
-//         <div>
-//             <Select
-//                 defaultValue="EUR"
-//                 onChange={handleChange}
-//                 size='large'
-//                 style={{ margin: '5px' }}
-//             >
-//                 <Option value="EUR">€ EUR</Option>
-//                 <Option value="USD">$ USD</Option>
-//                 <Option value="GBP">£ GBP</Option>
-//             </Select>
-//         </div>
-//     );
-// };
-
-// export default CurrencySelection;
 
 
-const CurrencySelection = () => {
+const Converter = () => {
+
+    const [currencies, setCurrencies] = useState([]);
+
+    useEffect(() => {
+        getCurrencies();
+    }, []);
+
+    const getCurrencies = () => {
+        axios
+            .get("https://api.openrates.io/latest")
+            .then(data => setCurrencies(data.data.data))
+            .catch(err => {
+                console.log(err);
+                return null;
+            });
+    }
+
+    return (
+        <div>
+            {currencies.length === 0 ? (
+                <div>Loading...</div>
+            ) : (
+                currencies.map((c,k) => {
+                    return <div key={k}>{c.rates}</div>
+                })
+            )}
+        </div>
+    )
+/*
+const Converter = () => {
 
     const [result, setResult] = useState(null);
     const [fromCurrency, setFromCurrency] = useState('');
@@ -49,7 +53,7 @@ const CurrencySelection = () => {
                 setCurrencies(currencyAr);
 
                 if (response.data.base === 'EUR') {
-                    console.log(`1€=${response.data.rates.GBP}£`);
+                    console.log(`1€ = ${response.data.rates.GBP}£`);
                 }
             })
             .catch(err => {
@@ -63,7 +67,7 @@ const CurrencySelection = () => {
                 .get(`https://api.openrates.io/latest?base=${fromCurrency}&symbols=${toCurrency}`)
                 .then(response => {
                     const result = amount * response.data.rates[toCurrency];
-                    setResult(result.toFixed(2));
+                    setResult(result.toFixed(5));
                 })
                 .catch(error => {
                     console.log("whoops", error.message);
@@ -83,6 +87,7 @@ const CurrencySelection = () => {
 
     return (
         <div>
+            <h2>Currency converter</h2>
             <div>
                 <input
                     name="amount"
@@ -114,5 +119,4 @@ const CurrencySelection = () => {
         </div>
     )
 }
-
-export default CurrencySelection;
+*/
