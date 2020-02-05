@@ -1,28 +1,20 @@
 /*
 -actions:
-ADD PRODUCT (ADMIN)
-EDIT PRODUCT (ADMIN)
-*EDIT PRODUCT DISCOUNT (ADMIN)
-DELETE PRODUCT (ADMIN)
 SEARCH PRODUCT (FILTER BY TEXT)
 FILTER BY PRICE
 FILTER BY PRICE RANGE
 FILTER BY DISCOUNT
-FILTER BY DATE ADDED
+FILTER BY NEWEST (DATE ADDED)
 FILTER BY MANUFACTURER
 FILTER BY POPULARITY
-ADD TO CART
-REMOVE FROM CART
-ADD TO WISHLIST
-REMOVE FROM WISHLIST
 */
 
 const filtersReducerDefaultState = {
     filters: {
         searchText: '',
         filterBy: '', //price,discount,manufacturer,dateAdded,popular
-        priceRangeLowerLimit: undefined,
-        priceRangeHigherLimit: undefined
+        priceRangeLow: 0,
+        priceRangeHigh: undefined
     }
 }
 
@@ -53,15 +45,11 @@ export const filtersReducer = (state = filtersReducerDefaultState, action) => {
                 ...state,
                 filterBy: 'discount'
             };
-        case 'FILTER_BY_PRICE_RANGE_LOW':
+        case 'FILTER_BY_PRICE_RANGE':
             return {
                 ...state,
-                priceRangeLowerLimit: action.priceRangeLowerLimit
-            }
-        case 'FILTER_BY_PRICE_RANGE_HIGH':
-            return {
-                ...state,
-                priceRangeHigherLimit: action.priceRangeHigherLimit
+                priceRangeLow: action.priceRangeLow,
+                priceRangeHigh: action.priceRangeHigh
             }
         default:
             return state;

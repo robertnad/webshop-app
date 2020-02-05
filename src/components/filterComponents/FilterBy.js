@@ -42,7 +42,7 @@ const FilterBy = () => {
     const radioStyle = {
         display: 'block',
         height: '30px',
-        lineHeight: '30px',
+        lineHeight: '20px',
       };
 
     return(

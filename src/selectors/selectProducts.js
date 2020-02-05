@@ -1,14 +1,14 @@
-import moment from 'moment';
+// import moment from 'moment';
 
-const selectProducts = (products, {searchText='', filterBy='dateAdded', priceRangeLowerLimit, priceRangeHigherLimit}) => {
+const selectProducts = (products, 
+        {searchText, filterBy, priceRangeLow, priceRangeHigh}) => {
     return products.filter((product) => {
         
-        const dateAdded = moment(product.createdAt);
+        // const dateAdded = moment(product.createdAt);
         const nameMatch = product.name.toLowerCase().includes(searchText.toLowerCase());
-        const lowPriceMatch = priceRangeLowerLimit ? (priceRangeLowerLimit > product.price) : true;
-        const highPriceMatch = priceRangeHigherLimit ? (priceRangeHigherLimit < product.price) : true;
+        const priceMatch = product.price >= priceRangeLow && product.price <= priceRangeHigh;
 
-        return nameMatch && dateAdded && lowPriceMatch && highPriceMatch;
+        return nameMatch && priceMatch; /*&& dateAdded;*/
     }).sort((a, b) => {
         if (filterBy === 'priceDescending') {
             return (a.price*100) < (b.price*100) ? 1 : -1;

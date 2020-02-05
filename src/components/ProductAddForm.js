@@ -30,7 +30,7 @@ const ProductAddForm = () => {
         e.preventDefault();
 
         let prodId = uuid();
-        let prodDate = moment().format('DD.MM.YYYY.')
+        let prodDate = moment().format('hh:mm DD.MM.YYYY.')
 
         dispatchProducts({
             type: 'ADD_PRODUCT',
@@ -57,6 +57,13 @@ const ProductAddForm = () => {
         setShowModal(false);
     }
 
+    const priceHandler = (e) => {
+        const price = e.target.value;
+        if (price.match(/^\d{1,}(\.\d{0,2})?$/)) {
+            setPrice(price)
+        }
+    }
+
     return (
         <div>
             <Button 
@@ -80,6 +87,7 @@ const ProductAddForm = () => {
                         value={name}
                         style={{ paddingTop: '10px' }}
                         placeholder="name"
+                        autoFocus
                         allowClear
                         onChange={(e) => setName(e.target.value)} />
                     <Input
@@ -87,16 +95,12 @@ const ProductAddForm = () => {
                         style={{ paddingTop: '10px' }}
                         placeholder="price"
                         allowClear
-                        onChange={(e) => {
-                            const price = e.target.value;
-                            if (price.match(/^\d{1,}(\.\d{0,2})?$/)) {
-                                setPrice(price)
-                            }
-                        }} />
+                        onChange={priceHandler} />
                     <Input
                         value={discount}
                         style={{ paddingTop: '10px' }}
                         placeholder="add discount"
+                        allowClear
                         onChange={(e) => setDiscount(e.target.value)} />
                     <Input
                         value={manufacturer}

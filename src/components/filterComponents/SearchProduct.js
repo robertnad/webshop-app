@@ -25,7 +25,7 @@ const SearchProduct = () => {
     return (
         <div>
             <Search
-                style={{ width: 500, height: '50px', marginBottom: '10px' }}
+                style={{ width: 500, height: '48px', margin:'5px' }}
                 type="text"
                 value={searchText}
                 placeholder="Search products"
@@ -37,4 +37,3 @@ const SearchProduct = () => {
 }
 
 export default SearchProduct;
-

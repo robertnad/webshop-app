@@ -2,7 +2,7 @@ import React from 'react';
 // import ProductsContext from '../context/products-context';
 import ProductEditForm from '../components/ProductEditForm';
 import ProductDeleteForm from '../components/ProductDeleteForm';
-import { Button, Rate } from 'antd';
+import { Button, /*Rate*/ } from 'antd';
 import { PageHeader, Descriptions, Statistic } from 'antd';
 
 const Product = ({ product }) => {
@@ -14,7 +14,7 @@ const Product = ({ product }) => {
       <Descriptions.Item label="Date added">{product.dateAdded}</Descriptions.Item>
       <Descriptions.Item label="Description">{product.description}</Descriptions.Item>
       <Descriptions.Item label="Id">{product.id}</Descriptions.Item>
-      <Descriptions.Item label="Rate"><Rate allowHalf defaultValue={0} /></Descriptions.Item>
+      {/*<Descriptions.Item label="Rate"><Rate allowHalf defaultValue={0} /></Descriptions.Item>*/}
     </Descriptions>
   );
   
@@ -35,7 +35,7 @@ const Product = ({ product }) => {
       />
       <Statistic 
         title="Price"
-        prefix="$"
+        prefix="€"
         value={product.price}
         style={{
           marginRight: 32,

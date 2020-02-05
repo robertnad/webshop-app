@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import { productsReducer } from '../reducers/productsReducer';
 import { filtersReducer } from '../reducers/filtersReducer';
-import MainFilter from './filterComponents/MainFilter';
+import FilterComponent from './filterComponents/FilterComponent';
 import ProductsList from './ProductsList';
 import ProductAddForm from './ProductAddForm';
 import ProductsContext from '../context/products-context';
@@ -33,8 +33,8 @@ const ShoppingPage = () => {
     return (
         <div>
             <ProductsContext.Provider value={{ products, dispatchProducts, filters, dispatchFilters }}>
-                <MainFilter/>
-                <h3>PRODUCTS</h3>
+                <FilterComponent />
+                <h3 style={{display:'flex', justifyContent:'center', padding:'10px'}}>PRODUCTS</h3>
                 <ProductAddForm />
                 <ProductsList />
                 <Pagination style={{display: 'flex', justifyContent: 'center', marginBottom: '30px'}} defaultCurrent={1} total={10} />
