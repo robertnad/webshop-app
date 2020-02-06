@@ -31,43 +31,32 @@ const { Option } = Select;
 const CurrencySelection = () => {
 
     const [result, setResult] = useState(null);
-    const [fromCurrency, setFromCurrency] = useState('');
+    const [fromCurrency, setFromCurrency] = useState('GBP');
     const [toCurrency, setToCurrency] = useState('HRK');
     const [amount, setAmount] = useState(1);
     const [currencies, setCurrencies] = useState([]);
 
     useEffect(() => {
-        axios
-            .get("https://api.openrates.io/latest")
-            .then(response => {
-                const currencyAr = [];
-                console.log(currencyAr);
-                console.log(response);
-                for (const key in response.data.rates) {
-                    currencyAr.push(key);
-                }
-                setCurrencies(currencyAr);
-
-                if (response.data.base === 'EUR') {
-                    console.log(`1€=${response.data.rates.GBP}£`);
-                }
-            })
-            .catch(err => {
-                console.log("whoops", err);
-            })
+        getData();
     }, []);
 
-    const convertHandler = () => {
+    const getData = async () => {
+        let response = await axios
+            .get("https://api.openrates.io/latest?base=CAD")
+        const currencyAr = [];
+        for (const key in response.data.rates) {
+            currencyAr.push(key);
+    }
+    setCurrencies(currencyAr);
+    console.log(response.data);    
+    }
+
+    const convertHandler = async () => {
         if (fromCurrency !== toCurrency) {
-            axios
+            let response = await axios
                 .get(`https://api.openrates.io/latest?base=${fromCurrency}&symbols=${toCurrency}`)
-                .then(response => {
-                    const result = amount * response.data.rates[toCurrency];
-                    setResult(result.toFixed(2));
-                })
-                .catch(error => {
-                    console.log("whoops", error.message);
-                })
+            const result = amount * response.data.rates[toCurrency];
+            setResult(result.toFixed(2));
         } else {
             setResult('You cant convert the same currency')
         }
