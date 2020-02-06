@@ -13,18 +13,15 @@ const ProductsList = () => {
         })
     );
 
-    // const { searchText='', filterBy, priceRangeLow, priceRangeHigh=highestPrice } = filters;
-
-    // const productsFiltered = selectProducts(products, {
-    //     searchText:'',
-    //     filterBy:'price',
-    //     priceRangeLow:0,
-    //     priceRangeHigh:highestPrice
-    // });
-
     /* copied this from selector folder */
     const selectProducts = (products, 
-            {searchText='', filterBy='dateAdded', priceRangeLow=0, priceRangeHigh=highestPrice}) => {
+        {
+            searchText='',
+            filterBy='dateAdded',
+            priceRangeLow=0,
+            priceRangeHigh=highestPrice,
+            currency=''
+        }) => {
         return products.filter((product) => {
             const nameMatch = product.name.toLowerCase().includes(searchText.toLowerCase());
             const priceMatch = product.price >= priceRangeLow && product.price <= priceRangeHigh;
@@ -40,7 +37,7 @@ const ProductsList = () => {
                 return a.discount < b.discount ? 1 : -1;
             }
             return 1;
-        });
+        })
     }
 
     const productsFiltered = selectProducts(products, filters);
@@ -76,15 +73,3 @@ export default ProductsList;
 //     <Product key={product.id} product={product} />
 //     ))
 // }
-
-// const products = [
-//     {
-//     name:'Pila',price:5.99,discount:0,manufacturer:'Viking',description:'Za drvo i metal'
-//     },
-//     {
-//     name:'Kosilica',price:250.00,discount:10,manufacturer:'Stihl',description:'3kW motor'
-//     },
-//     {
-//     name:'Busilica',price:120.00,discount:20,manufacturer:'Skil',description:'250W sa svrdlima'
-//     }
-// ];

@@ -14,7 +14,8 @@ const filtersReducerDefaultState = {
         searchText: '',
         filterBy: '', //price,discount,manufacturer,dateAdded,popular
         priceRangeLow: 0,
-        priceRangeHigh: undefined
+        priceRangeHigh: undefined,
+        currency: 'EUR'
     }
 }
 
@@ -25,6 +26,11 @@ export const filtersReducer = (state = filtersReducerDefaultState, action) => {
                 ...state,
                 searchText: action.searchText
             };
+        case 'SET_CURRENCY':
+            return {
+                ...state,
+                currency: action.currency
+            }
         case 'FILTER_BY_PRICE_ASCENDING':
             return {
                 ...state,

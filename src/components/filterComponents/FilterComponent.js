@@ -3,7 +3,7 @@ import SearchProduct from './SearchProduct';
 import FilterBy from './FilterBy';
 import PriceRangeSelector from './PriceRangeSelector';
 import CurrencySelection from '../CurrencySelection';
-import { Collapse, Row, Col } from 'antd';
+import { Collapse } from 'antd';
 const { Panel } = Collapse;
 
 const FilterComponent = () => {
@@ -11,7 +11,7 @@ const FilterComponent = () => {
     return (
         <div style={{padding: '10px', display: 'flex', justifyContent: 'stretch', alignItems: 'center'}}>
             <Collapse accordion style={{width: '500px', margin:'5px'}} >
-                <Panel header="Filter products" key="1">
+                <Panel header="Filter products">
                     <PriceRangeSelector />
                     <FilterBy />
                 </Panel>
