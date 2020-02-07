@@ -60,7 +60,7 @@ const ProductAddForm = () => {
     const priceHandler = (e) => {
         const price = e.target.value;
         if (price.match(/^\d{1,}(\.\d{0,2})?$/)) {
-            setPrice(price)
+            setPrice(price);
         }
     }
 
@@ -74,7 +74,6 @@ const ProductAddForm = () => {
             <Modal
                 title="Add a product" 
                 visible={showModal}
-                // onOk={this.handleOk}
                 onCancel={handleClose}
                 footer={[
                     <Button key="submit" type="primary" onClick={addProduct}>
@@ -84,16 +83,16 @@ const ProductAddForm = () => {
             >
                 <form onSubmit={addProduct}>
                     <Input
+                        autoFocus
                         value={name}
                         style={{ paddingTop: '10px' }}
                         placeholder="name"
-                        autoFocus
                         allowClear
                         onChange={(e) => setName(e.target.value)} />
                     <Input
                         value={price}
                         style={{ paddingTop: '10px' }}
-                        placeholder="price"
+                        placeholder="price (EUR)"
                         allowClear
                         onChange={priceHandler} />
                     <Input

@@ -1,15 +1,15 @@
 import React from 'react';
-// import ProductsContext from '../context/products-context';
 import ProductEditForm from '../components/ProductEditForm';
 import ProductDeleteForm from '../components/ProductDeleteForm';
-import { Button, /*Rate*/ } from 'antd';
+import { Button, Icon } from 'antd';
 import { PageHeader, Descriptions, Statistic } from 'antd';
 
 const Product = ({ product }) => {
 
+  const finalPrice = (product.price*(1-product.discount/100)).toFixed(2);
+  const arrowDown = <Icon type="arrow-down" style={{color:'green'}} />
+  const savings = (product.price-(product.price*(1-product.discount/100))).toFixed(2)
 
-
-    /* PAGE HEADER */
   const renderContent = (column = 2) => (
     <Descriptions size="small" column={column}>
       <Descriptions.Item label="Manufacturer">{product.manufacturer}</Descriptions.Item>
@@ -18,6 +18,7 @@ const Product = ({ product }) => {
       <Descriptions.Item label="Id">{product.id}</Descriptions.Item>
     </Descriptions>
   );
+
   
   const extraContent = (
     <div
@@ -27,22 +28,37 @@ const Product = ({ product }) => {
         justifyContent: 'flex-end'
       }}
     >
-      <Statistic
-        title="Amount"
-        value="1"
-        style={{
-          marginRight: 32,
-        }}
-      />
       <Statistic 
         title="Price"
         prefix="€"
-        value={product.price}
+        suffix={!product.discount ? '' : `(was ${product.price})`}
+        value={finalPrice}
         style={{
-          marginRight: 32,
-        }} 
+          marginRight: 32
+        }}
       />
-      <Statistic title="Discount" suffix="%" value={product.discount} />
+      {!product.discount ? '' :
+        <Statistic
+          title="Discount"
+          suffix="%"
+          prefix={arrowDown}
+          value={product.discount}
+          style={{
+            marginRight: 32
+          }}
+        />
+      }
+      {!product.discount ? '' :
+        <Statistic
+          title="Save"
+          suffix="€"
+          value={`-${savings}`}
+        />
+      }
+      {/*<Statistic
+        title="Amount"
+        value="1"
+      />*/}
     </div>
   );
   

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext } from 'react';
+import React, {useState, useContext } from 'react';
 import ProductsContext from '../context/products-context'
 // import axios from 'axios';
 import { Select } from 'antd';
@@ -8,11 +8,7 @@ const CurrencySelection = () => {
 
     const { dispatchFilters } = useContext(ProductsContext);
 
-    const [value, setValue] = useState('EUR');
-
-    // const onChange = (value) => {
-    //     console.log(`${value}`);
-    // }
+    const [value, /*setValue*/] = useState('EUR');
 
     const onChange = (value) => {
         dispatchFilters({
@@ -20,7 +16,14 @@ const CurrencySelection = () => {
             currency: value
         });
         console.log(value);
-        }
+        // getData(value);
+    }
+
+    // const getData = async (value) => {
+    //     let response = await axios
+    //         .get(`https://api.openrates.io/latest?base=EUR&symbols=${value}`)
+    //     console.log(response.data.rates[value]);    
+    // }
 
     return (
         <div>
